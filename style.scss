@@ -1,0 +1,293 @@
+@import '_variables';
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body { 
+    font-family: Roboto, Arial, sans-serif;
+}
+
+header {
+    position: sticky;
+    top: 0;
+    z-index: 99;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.25rem 1rem;
+    border-bottom: 1px solid rgb(187, 187, 187);
+    background-color: white;
+    .start {
+        display: flex;
+        gap: 1.5rem;
+        align-items: center;
+        button {
+            background-color: transparent;
+            border: none;
+            &:hover {
+                cursor: pointer;
+                border: none;
+            }
+            .fa-bars {
+                font-size: 1.5rem;
+            }
+            
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+
+            .fa-youtube {
+                color: $red3;
+                font-size: 3rem;
+                padding-right: 4px;
+            }
+
+            .name {
+                font-weight: bold;
+            }
+
+            .pl {
+                font-size: 7px;
+                position: relative;
+                bottom: 6px;
+            }
+        }
+    }
+
+    .center {
+        display: flex;
+        align-items: center;
+        input {
+            width: 20rem;
+            padding: 0.5rem 1rem;
+            border: 1px solid gray;
+        }
+
+        button {
+            padding: 0.5rem 2rem;
+            background-color: $background-color;
+            border: 1px solid gray;
+            &:hover {
+                background-color: $category-hover;
+                cursor: pointer;
+            }
+        }
+    }
+
+    .end {
+        display: flex;
+        align-items: center;
+        gap: 3rem;
+        
+        button {
+
+            &:not(.login) {
+                background-color: transparent;
+                border: none;
+            }
+
+            .fa-th, .fa-ellipsis-v {
+                font-size: 1.5rem;
+            }
+            
+            &:hover {
+                cursor: pointer;
+            }
+        }
+    }
+}
+
+#body {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    background-color: $background-color;
+    
+    #left-section {
+        display: flex;
+        flex-direction: column;
+        gap: 3px;
+        background-color: white;
+        .link-group {
+            padding-bottom: 1rem;
+            border-bottom: 1px solid rgb(187, 187, 187);
+            ul {
+                list-style: none;
+                li {
+                    margin: 1rem 1rem 0 1rem;
+                    padding: 0.5rem;
+                    display: grid;
+                    grid-template-columns: 1fr 7fr;
+                    &:hover {
+                        cursor: pointer;
+                        background-color: $category-hover;
+                        border-radius: 0.5rem;
+                    }
+                }
+            }
+
+            .header {
+                margin-left: 1.5rem;
+                margin-top: 1rem;
+            }
+        }
+
+        .login-info {
+            background-color: white;
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid rgb(187, 187, 187);
+            p {
+                font-size: small;
+                margin-bottom: 1rem;
+            }
+
+
+        }
+    }
+
+    #main-section {
+        grid-column: span 4;
+        .buttons {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            padding: 1rem;
+            background-color: white;
+            button {
+                background-color: $category-hover;
+                border: 1px solid #989898;
+                padding: 0.5rem;
+                border-radius: 2rem;
+                font-weight: bold;
+                &:hover {
+                    background-color: lighten($category-hover, 20%);
+                    color: black;
+                }
+
+                &.active {
+                    background-color: $header-button;
+                    color: white;
+
+                    &:hover {
+                        background-color: lighten($header-button, 20%);
+                        border: 1px solid #989898;
+                        color: white;
+                    }
+                }
+            }
+        }
+
+        .main-movie-section:nth-of-type(2), .main-movie-section:nth-of-type(4) {
+            margin: 1rem;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-evenly;
+            border-bottom: 1px solid rgb(187, 187, 187);
+            .movie {
+                &:hover {
+                    cursor: pointer;
+                }
+
+                @for $i from 1 through length($movie-colors) {
+                    &:nth-child(#{$i}) .movie-frame {
+                        background-color: nth($movie-colors, $i);
+                    }
+                }
+            }
+        }
+
+        .main-movie-section:nth-of-type(3) {
+            display: flex;
+            flex-wrap: wrap;
+            margin: 1rem;
+            justify-content: space-evenly;
+            border-bottom: 1px solid rgb(187, 187, 187);
+            
+            .header {
+                width: 100%;
+                margin-left: 2.2rem;
+                margin-bottom: 1rem;
+                font-size: 1.5rem;
+                font-weight: bold;
+            }
+
+            .movie {
+                .movie-frame {
+                    background-color: #d3d3d3;
+                }
+            }
+        }
+
+        .movie {
+            display: grid;
+            grid-template-columns: 1fr 6fr;
+            height: 15rem;
+            width: 15rem;
+
+
+            .movie-frame {
+                height: 8rem;
+                grid-column: span 2;
+                margin-bottom: 0.5rem;
+            }
+
+            .avatar {
+                height: 2.5rem;
+                width: 2.5rem;
+                background-color: #d3d3d3;
+                border-radius: 50%;
+            }
+
+            .movie-info {
+                margin: 0.5rem;
+                .title {
+                    font-weight: bold;
+                    font-size: 0.9rem;
+                }
+
+                .info {
+                    .channel-name {
+                        font-size: 0.8rem;
+                        margin-top: 0.5rem;
+                        &:hover {
+                            color: gray;
+                            cursor: pointer;
+                        }
+                    }
+
+                    span {
+                        font-size: 0.6rem;
+                    }
+                }
+            }
+        }
+    }
+}
+
+button {
+    &.login {
+        border: 2px solid $login-color;
+        color: $login-color;
+        background-color: white;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.5rem;
+        font-weight: bold;
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        .fa-user-circle {
+            font-size: 1rem;
+        }
+    }
+
+    &:hover {
+        cursor: pointer;
+        background-color: $category-hover;
+    }
+}
+
+
